@@ -1,0 +1,43 @@
+---
+// 作成したレイアウトを読み込む
+import Layout from '../../layouts/Layout.astro';
+import type { MicroCMSListResponse } from "../../types.ts";
+import type { Work } from "../../types.ts";
+import { client } from "../../lib/microcms.js";
+import Contact from '../../components/Contact.astro';
+
+// 実績データを全件取得
+const { contents: works } = await client.get<MicroCMSListResponse<Work>>({
+  endpoint: "works",
+});
+---
+
+<Layout title="制作実績一覧">
+
+  <div class="-w-section-container">
+      <div class="-w-section-title">
+          <span class="-w-section-title__en">WORKS</span>
+          <h1 class="-w-section-title__ja">制作実績一覧</h1>
+      </div>
+
+      <div class="-w-works-grid">
+          {
+              works.map((work) => (
+                  <a href={`/works/${work.id}`} class="-w-work-card">
+                      <div class="-w-work-card__image-wrapper">
+                          <img src={work.image.url + '?w=400'} alt={work.title} loading="lazy" />
+                      </div>
+                      <div class="-w-work-card__content">
+                          <h3 class="-w-work-card__title">{work.title}</h3>
+                          <p class="-w-work-card__category">{work.skill}</p>
+                      </div>
+                  </a>
+              ))
+          }
+      </div>
+
+      <Contact />
+
+  </div>
+
+</Layout>
