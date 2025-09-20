@@ -208,7 +208,7 @@ a {
 .-w-btn_wrapper a:hover { transform: translateY(-2px); box-shadow: 0 7px 20px -5px var(--resourceColor-accent); }
 
 /* --- パララックスバナー --- */
-.-w-parallax-banner { height: 450px; background-image: url('../src/assets/images/bg-image.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.-w-parallax-banner { height: 450px; background-image: url('/images/bg-image.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
 
 /* --- プロフィール --- */
 .-w-profile__grid { display: flex; align-items: center; gap: 35px; }
