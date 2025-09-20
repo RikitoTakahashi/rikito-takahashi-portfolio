@@ -368,14 +368,13 @@ a {
 }
 /* レスポンシブ_SP */
 @media (max-width: 767px) {
-    /* .-w-section-container { padding: 6vh 0; } */
     .-w-wrapper { padding: 6vh 0; }
     .-w-section-title {
         margin-bottom: 3vh;
     }
     .-w-section-title__en { font-size: 1.75rem; }
-    .-w-fv__title-en { font-size: 2.5rem; }
-    .-w-fv__title-ja { font-size: 1rem; }
+    .-w-fv__title-en { font-size: min(2.5rem, 10vw); }
+    .-w-fv__title-ja { font-size: min(1rem, 4vw); }
     .-w-slide-gallery {
         padding: 5vh 0;
     }
