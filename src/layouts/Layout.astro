@@ -11,6 +11,17 @@ const { title } = Astro.props;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="none">
+    <meta property="og:site_name" content="Rikito Takahashi - Portfolio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="マークアップエンジニア、高橋力都のポートフォリオサイトです。制作実績やプロフィールを掲載しています。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={new URL('/ogp.png', Astro.url.origin)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="theme-color" content="#355C94" />
+
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title} | Rikito Takahashi - Portfolio</title>
 
     <!-- Google Fonts -->
@@ -20,6 +31,7 @@ const { title } = Astro.props;
     
     <!-- 外部スタイルシートの読み込み -->
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
 </head>
 <body>
     <!-- プリローダー -->

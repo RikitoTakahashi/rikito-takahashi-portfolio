@@ -24,45 +24,47 @@ const { work } = Astro.props as { work: Work & MicroCMSListContent };
 ---
 
 <Layout title={work.title}>
-    <div class="-w-section-container">
-        <div class="-w-work-detail">
-            <h1 class="-w-work-detail__title">{work.title}</h1>
-            <img class="-w-work-detail__image" src={work.image.url + '?w=1200'} alt={work.title} />
+    <div class="-w-section-container -w-third-layer">
+        <div class="-w-wrapper">
+            <div class="-w-work-detail">
+                <h1 class="-w-work-detail__title">{work.title}</h1>
+                <img class="-w-work-detail__image" src={work.image.url + '?w=1200'} alt={work.title} />
 
-            <div class="-w-work-detail__body">
-            <div class="-w-work-detail__info">
-                <h3>担当範囲</h3>
-                <p>{work.role}</p>
+                <div class="-w-work-detail__body">
+                    <div class="-w-work-detail__info">
+                        <h3>担当範囲</h3>
+                        <p>{work.role}</p>
 
-                <h3>使用技術</h3>
-                <p>{work.skill}</p>
+                        <h3>使用技術</h3>
+                        <p>{work.skill}</p>
 
-                {work.url && (
-                <>
-                    <h3>サイトURL</h3>
-                    <p><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></p>
-                </>
-                )}
-            </div>
-            <div class="-w-work-detail__description">
-                {work.detail && (
-                <>
-                    <h3>概要</h3>
-                    <div set:html={work.detail} />
-                </>
-                )}
+                        {work.url && (
+                        <>
+                            <h3>サイトURL</h3>
+                            <p><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></p>
+                        </>
+                        )}
+                    </div>
+                    <div class="-w-work-detail__description">
+                        {work.detail && (
+                        <>
+                            <h3>概要</h3>
+                            <div set:html={work.detail} />
+                        </>
+                        )}
 
-                {work.ingenuity && (
-                <>
-                    <h3>工夫した点</h3>
-                    <div set:html={work.ingenuity} />
-                </>
-                )}
-            </div>
-            </div>
+                        {work.ingenuity && (
+                        <>
+                            <h3>工夫した点</h3>
+                            <div set:html={work.ingenuity} />
+                        </>
+                        )}
+                    </div>
+                </div>
 
-            <div class="-w-btn_wrapper">
-            <a href="/works/">一覧へ戻る</a>
+                <div class="-w-btn_wrapper">
+                <a href="/works/">一覧へ戻る</a>
+                </div>
             </div>
         </div>
     </div>

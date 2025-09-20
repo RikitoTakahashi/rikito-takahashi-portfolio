@@ -1,13 +1,15 @@
 /* --- カラーパレット & 基本設定 --- */
 :root {
-    --resourceColor-background: rgb(248, 249, 250);
-    --resourceColor-backgroundText: rgb(33, 37, 41);
-    --resourceColor-main: rgb(255, 255, 255);
-    --resourceColor-mainText: rgb(108, 117, 125);
-    --resourceColor-accent: rgb(53, 92, 148);
-    --resourceColor-accentText: rgb(255, 255, 255);
+    --resourceColor-background: #f8f9fa;
+    --resourceColor-backgroundText: #212529;
+    --resourceColor-main: #ffffff;
+    --resourceColor-mainText: #6c757d;
+    --resourceColor-accent: #355c94;
+    --resourceColor-accent-08: rgba(53, 92, 148, 0.08);
+    --resourceColor-accentText: #ffffff;
     --font-primary: 'Inter', 'Noto Sans JP', sans-serif;
-    --color-border: rgb(222, 226, 230);
+    --color-border: #dee2e6;
+    --headerHeight: 80px;
 }
 
 html { 
@@ -48,11 +50,17 @@ a {
     text-decoration: none;
 }
 
-.-w-section-container {
+/* .-w-section-container {
     width: 90%;
     max-width: 1120px;
     margin: 0 auto;
     padding: 120px 0;
+} */
+.-w-wrapper {
+    width: 90%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 6rem 0;
 }
 .-w-section-title {
     text-align: center;
@@ -68,6 +76,12 @@ a {
     font-size: 1rem;
     color: var(--resourceColor-mainText);
     margin-top: 8px;
+}
+.-w-section-container__bgColor {
+    background-color: var(--resourceColor-accent-08);
+}
+.-w-section-container:is(.-w-second-layer,.-w-third-layer) {
+    padding-top: var(--headerHeight);
 }
 
 /* --- プリローダー --- */
@@ -177,9 +191,9 @@ a {
 .-w-loaded .-w-fv__title-en, .-w-loaded .-w-fv__title-ja { opacity: 1; transform: translateY(0); }
 
 /* --- ギャラリースライド (Swiper) --- */
-.-w-slide-gallery { 
-    overflow: hidden; 
-    padding: 120px 0;
+.-w-slide-gallery {
+    overflow: hidden;
+    padding: 4rem 0;
 }
 .swiper-wrapper { transition-timing-function: linear !important; }
 .-w-swiper-slide { transition: opacity 0.4s ease; }
@@ -213,7 +227,7 @@ a {
 /* --- プロフィール --- */
 .-w-profile__grid { display: flex; align-items: center; gap: 35px; }
 .-w-profile__image-wrapper { width: 35%; flex-grow: 1; text-align: center; }
-.-w-profile__image { width: 100%; height: auto; aspect-ratio: 1/1; border-radius: 50%; display: inline-block; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.-w-profile__image { width: 100%; height: auto; aspect-ratio: 1/1; border-radius: calc(1px * infinity); display: inline-block; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 .-w-profile__text-content { width: 100%;}
 .-w-profile__name-ja { font-size: 2.25rem; font-weight: 700; }
 .-w-profile__name-en { font-size: 1.125rem; color: var(--resourceColor-mainText); margin-top: 8px; }
@@ -224,7 +238,6 @@ a {
 
 /* --- コンタクト --- */
 .-w-contact { 
-    background-color: var(--resourceColor-background); 
     color: var(--resourceColor-backgroundText); 
     text-align: center; 
 }
@@ -256,6 +269,7 @@ a {
 .-w-modal-body__category { font-size: 1rem; color: var(--resourceColor-mainText); margin-bottom: 24px; }
 .-w-modal-body__description h3 { font-size: 1.125rem; font-weight: 700; margin-top: 24px; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 2px solid var(--color-border); }
 .-w-modal-body__description p { font-size: 0.95rem; }
+.-w-modal-body__description a { color: var(--resourceColor-accent); }
 .-w-modal-body__description .-w-tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .-w-modal-body__description .-w-tech-tag { background-color: var(--resourceColor-background); color: var(--resourceColor-mainText); padding: 4px 12px; border-radius: 9999px; font-size: 0.875rem; }
 
@@ -268,9 +282,9 @@ a {
 /* --- ユーティリティ --- */
 .-w-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
-/* --- レスポンシブ --- */
+/* --- レスポンシブ_タブレット --- */
 @media (max-width: 1023px) {
-    .-w-section-container { padding: 96px 0; }
+    /* .-w-section-container { padding: 96px 0; } */
     .-w-section-title__en { font-size: 2rem; }
     .-w-header__nav { display: none; }
     
@@ -352,14 +366,33 @@ a {
     .-w-works-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .-w-profile__grid { flex-direction: column; text-align: center; gap: 40px; }
 }
+/* レスポンシブ_SP */
 @media (max-width: 767px) {
-    .-w-section-container { padding: 80px 0; }
+    /* .-w-section-container { padding: 6vh 0; } */
+    .-w-wrapper { padding: 6vh 0; }
+    .-w-section-title {
+        margin-bottom: 3vh;
+    }
     .-w-section-title__en { font-size: 1.75rem; }
     .-w-fv__title-en { font-size: 2.5rem; }
     .-w-fv__title-ja { font-size: 1rem; }
+    .-w-slide-gallery {
+        padding: 5vh 0;
+    }
     .-w-greeting__image-small { display: none; }
+    .-w-greeting__text-content h3 {
+        font-size: min(2.25rem,9vw);
+    }
+    .-w-greeting__text-content p {
+        text-align: left;
+    }
+    .-w-greeting__grid {
+        gap: 1rem;
+    }
     .-w-works-grid { grid-template-columns: 1fr; gap: 20px; }
-    .-w-profile__image { width: min(300px, 100%); height: auto; }
+    .-w-profile__image-wrapper {
+        width: min(300px, 60%);
+    }
     .-w-profile__history-item { flex-direction: column; text-align: left; margin-top: 16px; }
     .-w-profile__history-year { margin-bottom: 4px; }
     .-w-contact__mail-address { font-size: 1.1rem; padding: 14px 28px; }
@@ -438,12 +471,12 @@ a {
 }
 
 /* --- Responsive (for Tablet and Mobile) --- */
-@media (max-width: 768px) {
-  .-w-work-detail__body {
+@media (max-width: 767px) {
+    .-w-work-detail__body {
     grid-template-columns: 1fr; /* 1カラムにする */
     gap: 2rem;
-  }
-  .-w-work-detail__title {
+    }
+    .-w-work-detail__title {
     font-size: 1.75rem;
-  }
+    }
 }
