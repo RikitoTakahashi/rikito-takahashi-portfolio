@@ -359,6 +359,9 @@ a {
     .-w-greeting__grid { grid-template-columns: 1fr; }
     .-w-greeting__text-content { grid-row: 1; text-align: center; } 
     .-w-greeting__image-wrapper { grid-row: 2; margin-top: 48px; }
+    .-w-greeting__image-small {
+        right: -3%;
+    }
 
     .-w-footer__nav { display: none; }
     .-w-footer__inner { justify-content: center; }
