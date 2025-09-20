@@ -74,11 +74,18 @@ const { title } = Astro.props;
         <div class="-w-footer__inner">
             <nav class="-w-footer__nav">
                 <a href="/#greeting">GREETING</a>
-                <a href="/works/">WORKS</a>
+                <a href="/#works">WORKS</a>
                 <a href="/#profile">PROFILE</a>
                 <a href="/#contact">CONTACT</a>
             </nav>
-            <p class="-w-footer__copyright">&copy; 2025 Rikito Takahashi. All Rights Reserved.</p>
+
+            <div class="-w-footer__meta">
+                <p class="-w-footer__disclaimer">
+                    当サイトに掲載している制作実績の一部には、過去に在籍した企業での担当案件が含まれております。これらの著作権は各企業に帰属します。
+                </p>
+                <p class="-w-footer__copyright">&copy; 2025 Rikito Takahashi. All Rights Reserved.</p>
+            </div>
+
         </div>
     </footer>
 
