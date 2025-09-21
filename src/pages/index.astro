@@ -4,10 +4,11 @@ import type { MicroCMSListResponse } from "../types.ts";
 import type { Work } from "../types.ts";
 import { client } from "../lib/microcms.js";
 import Contact from '../components/Contact.astro';
+import Skills from '../components/Skills.astro';
 import { Image } from 'astro:assets';
 import fvImage from '../assets/images/fv.jpeg';
 import profileImage from '../assets/images/profile.png';
-import greetingImageL from '../assets/images/greeting-large2.jpg';
+import greetingImageL from '../assets/images/greeting-large3.png';
 import greetingImageS from '../assets/images/greeting-small2.jpeg';
 
 const { contents: allWorks } = await client.get<MicroCMSListResponse<Work>>({
@@ -25,8 +26,8 @@ const designerWorks = allWorks.filter(work => work.category?.includes('デザイ
 <Layout title="Rikito Takahashi - Portfolio">
 
     <!-- FV -->
-    <section class="-w-fv" id="fv">
-            <Image 
+        <section class="-w-fv" id="fv">
+            <Image
                 src={fvImage}
                 alt="サイトのメインビジュアル"
                 class="-w-fv__background-image"
@@ -38,54 +39,7 @@ const designerWorks = allWorks.filter(work => work.category?.includes('デザイ
             </div>
         </section>
 
-        <!-- ギャラリースライド -->
-        <section class="-w-slide-gallery" id="slide-gallery">
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    {/* microCMSから取得したworksデータ（最大6件）でループ表示 */}
-                    {slideWorks.map((work) => (
-                        <a href={`/works/${work.id}`} class="swiper-slide -w-swiper-slide">
-                            <img 
-                                src={`${work.image.url}?fit=crop&w=600&h=400`}
-                                alt={work.title}
-                                loading="lazy"
-                            />
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <!-- ご挨拶 -->
-        <section class="-w-greeting -w-section-container" id="greeting">
-            <div class="-w-wrapper">
-                <div class="-w-greeting__grid">
-                    <div class="-w-greeting__image-wrapper -w-scroll-animation">
-                        <Image
-                        src={greetingImageL}
-                        alt="挨拶セクションのメイン画像"
-                        class="-w-greeting__image-large"
-                        width={800}
-                        height={600}
-                        format="webp"
-                        />
-                        <Image
-                        src={greetingImageS}
-                        alt="挨拶セクションのサブ画像"
-                        class="-w-greeting__image-small"
-                        width={400}
-                        height={300}
-                        format="webp"
-                        />
-                    </div>
-                    <div class="-w-greeting__text-content -w-scroll-animation-stagger">
-                        <h3 style="transition-delay: 0.1s;">Photoshopと出会い<br>WEBの世界に憧れて<br>ここまで来ました</h3>
-                        <p style="transition-delay: 0.2s;">WEB制作とは縁遠い人生を送って参りました。出身大学は教育大学。カラオケ店のアルバイト歴が5年。パチンコ店の正社員歴が6年4ヵ月。その中で、Photoshopでの販促物制作という「ものづくり」に携わった3年間が忘れられませんでした。<br>今度は、WEBの世界でものづくりがしたい。<br>改めてそう思い、この業界にやってきました。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- 制作実績 -->
         <section class="-w-works -w-section-container" id="works">
             <div class="-w-wrapper">
                 <div class="-w-section-title -w-scroll-animation">
@@ -129,8 +83,35 @@ const designerWorks = allWorks.filter(work => work.category?.includes('デザイ
             </div>
         </section>
 
-        <!-- パララックスバナー -->
-        <section class="-w-parallax-banner" id="parallax-banner"></section>
+        <!-- ご挨拶 -->
+        <section class="-w-greeting -w-section-container -w-section-container__bgColor" id="greeting">
+            <div class="-w-wrapper">
+                <div class="-w-greeting__grid">
+                    <div class="-w-greeting__image-wrapper -w-scroll-animation">
+                        <Image
+                        src={greetingImageL}
+                        alt="挨拶セクションのメイン画像"
+                        class="-w-greeting__image-large"
+                        width={800}
+                        height={600}
+                        format="webp"
+                        />
+                        <Image
+                        src={greetingImageS}
+                        alt="挨拶セクションのサブ画像"
+                        class="-w-greeting__image-small"
+                        width={400}
+                        height={300}
+                        format="webp"
+                        />
+                    </div>
+                    <div class="-w-greeting__text-content -w-scroll-animation-stagger">
+                        <h3 style="transition-delay: 0.1s;">Photoshopと出会い<br>WEBの世界に憧れて<br>ここまで来ました</h3>
+                        <p style="transition-delay: 0.2s;">WEB制作とは縁遠い人生を送って参りました。出身大学は教育大学。カラオケ店のアルバイト歴が5年。パチンコ店の正社員歴が6年4ヵ月。その中で、Photoshopでの販促物制作という「ものづくり」に携わった3年間が忘れられませんでした。<br>今度は、WEBの世界でものづくりがしたい。<br>改めてそう思い、この業界にやってきました。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- プロフィール -->
         <section class="-w-profile -w-section-container" id="profile">
@@ -157,7 +138,7 @@ const designerWorks = allWorks.filter(work => work.category?.includes('デザイ
                         <div class="-w-profile__history" style="transition-delay: 0.3s;">
                             <div class="-w-profile__history-item">
                                 <p class="-w-profile__history-year">2017-2023</p>
-                                <p class="-w-profile__history-detail">エンターテイメント業界の企業に新卒入社。ホールスタッフとして従事する傍ら、2019年より、店舗の広告販促チームにてPhotoshopを使用した販促物の制作を担当。2020年から2022年の約2年間、チームのリーダーとして販促物制作業務を牽引し、それに伴いPhotoshopの扱いが可能な人材を4名輩出。</p>
+                                <p class="-w-profile__history-detail">全国300店舗のパチンコホールを運営する株式会社マルハンに新卒入社。ホールスタッフとして従事する傍ら、2019年より、店舗の広告販促チームにてPhotoshopを使用した販促物の制作を担当。2020年から2022年の約2年間、チームのリーダーとして販促物制作業務を牽引し、それに伴いPhotoshopの扱いが可能な人材を4名輩出。</p>
                             </div>
                             <div class="-w-profile__history-item">
                                 <p class="-w-profile__history-year">2024-現在</p>
@@ -169,7 +150,9 @@ const designerWorks = allWorks.filter(work => work.category?.includes('デザイ
             </div>
         </section>
 
-         <Contact />
+        <Skills />
+
+        <Contact />
 
     <script define:vars={{ allWorks }}>
         window.worksData = allWorks;

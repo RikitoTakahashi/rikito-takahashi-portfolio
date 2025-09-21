@@ -1,0 +1,65 @@
+---
+// 新しいカテゴリー分けを反映したスキルデータ
+const skillsData = [
+  // Frontend Development
+    { name: 'HTML', category: 'Frontend Development', duration: '1年', confidence: 4 },
+    { name: 'CSS', category: 'Frontend Development', duration: '1年', confidence: 4 },
+    { name: 'JavaScript (ES6+)', category: 'Frontend Development', duration: '1年', confidence: 3 },
+    { name: 'Swiper.js', category: 'Frontend Development', duration: '1年', confidence: 3 },
+    { name: 'Luminous', category: 'Frontend Development', duration: '1年', confidence: 3 },
+    { name: 'Astro', category: 'Frontend Development', duration: '1年未満', confidence: 1 },
+  // Design
+    { name: 'Photoshop', category: 'Design', duration: '5年', confidence: 5 },
+    { name: 'Illustrator', category: 'Design', duration: '1年未満', confidence: 2 },
+  // Tools & Workflow
+    { name: 'VSCode', category: 'Tools & Workflow', duration: '1年', confidence: 4 },
+    { name: 'Git / GitHub', category: 'Tools & Workflow', duration: '1年未満', confidence: 1 },
+    { name: 'microCMS', category: 'Tools & Workflow', duration: '1年未満', confidence: 1 },
+];
+
+// カテゴリーの定義も新しいものに更新
+const categories = {
+    'Frontend Development': skillsData.filter(s => s.category === 'Frontend Development'),
+    'Design': skillsData.filter(s => s.category === 'Design'),
+    'Tools & Workflow': skillsData.filter(s => s.category === 'Tools & Workflow'),
+};
+---
+
+<section class="-w-skills -w-section-container -w-section-container__bgColor" id="skills">
+    <div class="-w-wrapper">
+        <div class="-w-section-title -w-scroll-animation">
+            <span class="-w-section-title__en">SKILLS</span>
+            <h2 class="-w-section-title__ja">できること</h2>
+        </div>
+
+        <div class="-w-skills-grid">
+            {Object.entries(categories).map(([categoryName, skills]) => (
+                <div class="-w-skills-category -w-scroll-animation">
+                    <h3 class="-w-skills-category__title">{categoryName}</h3>
+                    <div class="-w-skills-list">
+                        {skills.map(skill => (
+                        <div class="-w-skill-item">
+                            <div class="-w-skill-item__header">
+                                <span class="-w-skill-item__name">{skill.name}</span>
+                                <span class="-w-skill-item__duration">{skill.duration}</span>
+                            </div>
+                            <div class="-w-skill-item__level-wrapper">
+                                <p class="-w-skill-item__level-label">習熟度</p>
+                                <div class="-w-skill-item__bar">
+                                    <div
+                                        class:list={[
+                                            "-w-skill-item__bar-inner",
+                                            { "-w-is-mastered": skill.confidence >= 4 }
+                                        ]}
+                                        style={`--level: ${skill.confidence}`}
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

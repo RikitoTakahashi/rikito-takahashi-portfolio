@@ -1,0 +1,25 @@
+---
+// 1. どんな形のデータを受け取るかを定義
+import type { Work } from '../types.ts';
+interface Props {
+    works: Work[];
+}
+// 2. Astro.propsからデータを受け取る
+const { works } = Astro.props;
+---
+<section class="-w-slide-gallery" id="slide-gallery">
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {/* 3. 受け取った変数 works を使ってループ表示 */}
+            {works.map((work) => (
+                <a href={`/works/${work.id}`} class="swiper-slide -w-swiper-slide">
+                    <img
+                        src={`${work.image.url}?fit=crop&w=600&h=400`}
+                        alt={work.title}
+                        loading="lazy"
+                    />
+                </a>
+            ))}
+        </div>
+    </div>
+</section>
