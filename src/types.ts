@@ -25,4 +25,5 @@ export type Work = {
   ingenuity?: string;
   skill: string;
   url?: string;
+  category: string[];
 };

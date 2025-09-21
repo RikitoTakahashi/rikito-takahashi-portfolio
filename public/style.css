@@ -221,6 +221,27 @@ a {
 .-w-btn_wrapper a { display: inline-flex; align-items: center; gap: 8px; padding: 18px 48px; background-color: var(--resourceColor-accent); color: var(--resourceColor-accentText); border-radius: 50px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 15px -5px var(--resourceColor-accent); }
 .-w-btn_wrapper a:hover { transform: translateY(-2px); box-shadow: 0 7px 20px -5px var(--resourceColor-accent); }
 
+.-w-works-subheading {
+    color: var(--resourceColor-accent);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.-w-works-grid + .-w-works-subheading {
+    margin-top: 80px;
+}
+
+#works-grid-markup + .-w-works-subheading {
+    margin-top: 80px;
+}
+
 /* --- パララックスバナー --- */
 .-w-parallax-banner { height: 450px; background-image: url('/images/bg-image.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
 

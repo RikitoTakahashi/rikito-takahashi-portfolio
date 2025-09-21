@@ -1,33 +1,29 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import type { MicroCMSListResponse } from "../types.ts";
+import type { Work } from "../types.ts";
+import { client } from "../lib/microcms.js";
+import Contact from '../components/Contact.astro';
 import { Image } from 'astro:assets';
 import fvImage from '../assets/images/fv.jpeg';
 import profileImage from '../assets/images/profile.png';
 import greetingImageL from '../assets/images/greeting-large2.jpg';
 import greetingImageS from '../assets/images/greeting-small2.jpeg';
 
-// 作成したレイアウトを読み込む
-import Layout from '../layouts/Layout.astro';
-import type { MicroCMSListResponse } from "../types.ts";
-import type { Work } from "../types.ts";
-import { client } from "../lib/microcms.js";
-import Contact from '../components/Contact.astro';
-
-
-// ギャラリースライド用に最新10件を取得し、slideWorks変数に格納
-const { contents: slideWorks } = await client.get<MicroCMSListResponse<Work>>({
+const { contents: allWorks } = await client.get<MicroCMSListResponse<Work>>({
     endpoint: "works",
-    queries: { limit: 10 },
+    queries: { limit: 20 },
 });
 
-// 制作実績グリッド用に最新6件を取得し、gridWorks変数に格納
-const { contents: gridWorks } = await client.get<MicroCMSListResponse<Work>>({
-    endpoint: "works",
-    queries: { limit: 6 },
-});
+const slideWorks = allWorks.slice(0, 10);
+
+const markupWorks = allWorks.filter(work => work.category?.includes('マークアップエンジニア')).slice(0, 6);
+
+const designerWorks = allWorks.filter(work => work.category?.includes('デザイナー')).slice(0, 6);
 ---
 
 <Layout title="Rikito Takahashi - Portfolio">
-    
+
     <!-- FV -->
     <section class="-w-fv" id="fv">
             <Image 
@@ -90,17 +86,16 @@ const { contents: gridWorks } = await client.get<MicroCMSListResponse<Work>>({
             </div>
         </section>
 
-        <!-- ギャラリー -->
-        <section class="-w-works -w-section-container -w-section-container__bgColor" id="works">
+        <section class="-w-works -w-section-container" id="works">
             <div class="-w-wrapper">
                 <div class="-w-section-title -w-scroll-animation">
                     <span class="-w-section-title__en">WORKS</span>
                     <h2 class="-w-section-title__ja">制作実績</h2>
                 </div>
 
-                <div class="-w-works-grid" id="works-grid">
-                    {
-                    gridWorks.map((work) => (
+                <h3 class="-w-works-subheading">Markup Engineer</h3>
+                <div class="-w-works-grid" id="works-grid-markup">
+                    {markupWorks.map((work) => (
                         <div class="-w-work-card -w-scroll-animation" data-id={work.id}>
                             <div class="-w-work-card__image-wrapper">
                                 <img src={work.image.url + '?w=400'} alt={work.title} loading="lazy" />
@@ -110,8 +105,22 @@ const { contents: gridWorks } = await client.get<MicroCMSListResponse<Work>>({
                                 <p class="-w-work-card__category">{work.skill}</p>
                             </div>
                         </div>
-                    ))
-                    }
+                    ))}
+                </div>
+
+                <h3 class="-w-works-subheading">Designer</h3>
+                <div class="-w-works-grid" id="works-grid-design">
+                    {designerWorks.map((work) => (
+                        <div class="-w-work-card -w-scroll-animation" data-id={work.id}>
+                            <div class="-w-work-card__image-wrapper">
+                                <img src={work.image.url + '?w=400'} alt={work.title} loading="lazy" />
+                            </div>
+                            <div class="-w-work-card__content">
+                                <h3 class="-w-work-card__title">{work.title}</h3>
+                                <p class="-w-work-card__category">{work.skill}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
                 <div class="-w-btn_wrapper -w-scroll-animation">
@@ -162,8 +171,8 @@ const { contents: gridWorks } = await client.get<MicroCMSListResponse<Work>>({
 
          <Contact />
 
-    <script define:vars={{ gridWorks }}>
-        window.worksData = gridWorks;
+    <script define:vars={{ allWorks }}>
+        window.worksData = allWorks;
     </script>
 
 </Layout>
