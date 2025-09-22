@@ -1,10 +1,8 @@
 import Swiper from 'swiper';
 import { Autoplay } from 'swiper/modules';
-import 'swiper/css'; // Swiperの基本CSSを読み込む
+import 'swiper/css';
 
 function main() {
-    // --- DOM要素の取得エリア ---
-    // 主要な要素は関数の最初にまとめて取得するのが一般的です
     const preloader = document.getElementById('preloader');
     const headerEl = document.getElementById('header');
     const bentoBtn = document.getElementById('bento-menu-btn');
@@ -53,12 +51,12 @@ function main() {
             modules: [Autoplay],
 
             loop: true,
-            speed: 8000, 
+            speed: 8000,
             autoplay: {
-                delay: 0, 
+                delay: 0,
                 disableOnInteraction: false,
             },
-            allowTouchMove: false, 
+            allowTouchMove: false,
             slidesPerView: 1.5,
             spaceBetween: 16,
             centeredSlides: true,
@@ -78,15 +76,13 @@ function main() {
     }
 
 // --- Works (モーダル機能) ---
-const worksGrids = document.querySelectorAll('.-w-works-grid'); // 1. クラス名で全てのグリッドを取得
+const worksGrids = document.querySelectorAll('.-w-works-grid');
 const modal = document.getElementById('modal');
 
-// 2. グリッドが1つ以上見つかった場合のみ処理を実行
 if (worksGrids.length > 0 && modal && window.worksData) {
     const modalContent = document.getElementById('modal-content');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-  // 3. 見つかった全てのグリッドに対して、クリックイベントを設定
     worksGrids.forEach(grid => {
         grid.addEventListener('click', (e) => {
         const card = e.target.closest('.-w-work-card');
@@ -100,7 +96,6 @@ if (worksGrids.length > 0 && modal && window.worksData) {
         });
     });
 
-  // ↓ openModal, closeModalの関数自体は変更なし
     function openModal(work) {
         modalContent.innerHTML = `
         <img src="${work.image.url}?w=800" alt="${work.title}" class="-w-modal-body__image">
@@ -129,15 +124,14 @@ if (worksGrids.length > 0 && modal && window.worksData) {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('-w-is-open')) closeModal(); });
     }
 
-    // --- TOPへ戻るボタン（最終版） ---
+    // --- TOPへ戻るボタン ---
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
-    // ボタンの表示・非表示を制御するロジック
+
     window.addEventListener('scroll', () => {
         backToTopBtn.classList.toggle('-w-is-visible', window.scrollY > 300);
     });
 
-    // ボタンがクリックされた時のスムーズスクロール処理
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
         top: 0,
@@ -146,7 +140,7 @@ if (worksGrids.length > 0 && modal && window.worksData) {
     });
     }
 
-    // --- スクロールアニメーションのロジック ---
+    // --- スクロールアニメーション ---
     const animationTargets = document.querySelectorAll('.-w-scroll-animation, .-w-scroll-animation-stagger');
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -175,5 +169,4 @@ if (worksGrids.length > 0 && modal && window.worksData) {
     });
 };
 
-// ページのHTML読み込み完了を待って、main関数を実行
 document.addEventListener('DOMContentLoaded', main);
