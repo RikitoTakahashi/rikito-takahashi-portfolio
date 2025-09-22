@@ -77,27 +77,30 @@ function main() {
         });
     }
 
-    // --- Works (モーダル機能) ---
-    const worksGrid = document.getElementById('works-grid');
-    const modal = document.getElementById('modal');
+// --- Works (モーダル機能) ---
+const worksGrids = document.querySelectorAll('.-w-works-grid'); // 1. クラス名で全てのグリッドを取得
+const modal = document.getElementById('modal');
 
-    // window.worksData が存在し、modal要素がある場合のみ処理を実行
-    if (worksGrid && modal && window.worksData) {
+// 2. グリッドが1つ以上見つかった場合のみ処理を実行
+if (worksGrids.length > 0 && modal && window.worksData) {
     const modalContent = document.getElementById('modal-content');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    worksGrid.addEventListener('click', (e) => {
+  // 3. 見つかった全てのグリッドに対して、クリックイベントを設定
+    worksGrids.forEach(grid => {
+        grid.addEventListener('click', (e) => {
         const card = e.target.closest('.-w-work-card');
         if (card && card.dataset.id) {
-        const workId = card.dataset.id;
-        // window.worksDataからクリックされたIDの作品データを検索
-        const work = window.worksData.find(w => w.id === workId);
-        if (work) {
+            const workId = card.dataset.id;
+            const work = window.worksData.find(w => w.id === workId);
+            if (work) {
             openModal(work);
+            }
         }
-        }
+        });
     });
 
+  // ↓ openModal, closeModalの関数自体は変更なし
     function openModal(work) {
         modalContent.innerHTML = `
         <img src="${work.image.url}?w=800" alt="${work.title}" class="-w-modal-body__image">
