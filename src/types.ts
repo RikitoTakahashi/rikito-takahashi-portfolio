@@ -1,4 +1,3 @@
-// microCMSのAPIレスポンスの共通の型
 export interface MicroCMSListResponse<T> {
   contents: T[];
   totalCount: number;
@@ -6,7 +5,6 @@ export interface MicroCMSListResponse<T> {
   limit: number;
 }
 
-// あなたのAPIスキーマに合わせた、新しいWorkの型定義
 export type Work = {
   id: string;
   createdAt: string;
@@ -20,7 +18,7 @@ export type Work = {
   };
   title: string;
   role: string;
-  // required:false のフィールドは ? を付けてオプショナルにする
+
   detail?: string;
   ingenuity?: string;
   skill: string;

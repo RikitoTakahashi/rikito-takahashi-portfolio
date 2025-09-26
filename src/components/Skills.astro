@@ -1,13 +1,11 @@
 ---
 // 新しいカテゴリー分けを反映したスキルデータ
 const skillsData = [
-  // Frontend Development
-    { name: 'HTML', category: 'Frontend Development', duration: '1年', confidence: 4 },
-    { name: 'CSS', category: 'Frontend Development', duration: '1年', confidence: 4 },
-    { name: 'JavaScript (ES6+)', category: 'Frontend Development', duration: '1年', confidence: 3 },
-    { name: 'Swiper.js', category: 'Frontend Development', duration: '1年', confidence: 3 },
-    { name: 'Luminous', category: 'Frontend Development', duration: '1年', confidence: 3 },
-    { name: 'Astro', category: 'Frontend Development', duration: '1年未満', confidence: 1 },
+  // Markup Engineer
+    { name: 'HTML', category: 'Markup Engineer', duration: '1年', confidence: 4 },
+    { name: 'CSS', category: 'Markup Engineer', duration: '1年', confidence: 4 },
+    { name: 'JavaScript (ES6+)', category: 'Markup Engineer', duration: '1年', confidence: 2 },
+    { name: 'Astro', category: 'Markup Engineer', duration: '1年未満', confidence: 1 },
   // Design
     { name: 'Photoshop', category: 'Design', duration: '3年', confidence: 4 },
     { name: 'Illustrator', category: 'Design', duration: '1年未満', confidence: 2 },
@@ -18,7 +16,7 @@ const skillsData = [
 ];
 
 const categories = {
-    'Frontend Development': skillsData.filter(s => s.category === 'Frontend Development'),
+    'Markup Engineer': skillsData.filter(s => s.category === 'Markup Engineer'),
     'Design': skillsData.filter(s => s.category === 'Design'),
     'Tools & Workflow': skillsData.filter(s => s.category === 'Tools & Workflow'),
 };
